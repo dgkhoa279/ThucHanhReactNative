@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/animal.ts",
+    "dev": "ts-node src/library.ts",
     "build": "tsc",
     "start:build": "node dist/index.js"
   },
