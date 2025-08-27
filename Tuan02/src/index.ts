@@ -136,21 +136,36 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 
 // runSimulatedTask();
 // Bài 13 
-function simulateError(): Promise<string> {
-  return new Promise((_, reject) => {
+// function simulateError(): Promise<string> {
+//   return new Promise((_, reject) => {
+//     setTimeout(() => {
+//       reject(new Error("Something went wrong"));
+//     }, 1000);
+//   });
+// }
+
+// async function runWithErrorHandling(): Promise<void> {
+//   try {
+//     const result: string = await simulateError();
+//     console.log(result); 
+//   } catch (error) {
+//     console.error("Caught error:", (error as Error).message);
+//   }
+// }
+
+// runWithErrorHandling();
+// Bài 14 
+async function tripleAfterDelay(num: number): Promise<number> {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      reject(new Error("Something went wrong"));
+      resolve(num * 3);
     }, 1000);
   });
 }
 
-async function runWithErrorHandling(): Promise<void> {
-  try {
-    const result: string = await simulateError();
-    console.log(result); 
-  } catch (error) {
-    console.error("Caught error:", (error as Error).message);
-  }
+async function runTriple(): Promise<void> {
+  const result: number = await tripleAfterDelay(5);
+  console.log("Triple result:", result); // Output: 15
 }
 
-runWithErrorHandling();
+runTriple();
