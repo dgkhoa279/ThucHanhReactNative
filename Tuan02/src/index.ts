@@ -27,15 +27,25 @@
 // throwError().catch((err)=> console.log(err.message))
 
 // Bài 4
-function randomNumber(){
-    return new Promise((resolve,reject)=>{
-        const num = Math.random()
-        if(num >= 0){
-            resolve(num)
-        }else{
-            reject("Failed")
-        }
-    })
-}
-randomNumber().then(console.log)
+// function randomNumber(){
+//     return new Promise((resolve,reject)=>{
+//         const num = Math.random()
+//         if(num >= 0){
+//             resolve(num)
+//         }else{
+//             reject("Failed")
+//         }
+//     })
+// }
+// randomNumber().then(console.log)
+// Bài 5 
 
+function simulateTask(time: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Task done");
+    }, time);
+  });
+}
+
+simulateTask(1500).then((msg: string) => console.log(msg));
