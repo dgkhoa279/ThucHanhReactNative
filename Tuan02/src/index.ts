@@ -94,14 +94,28 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 // )
 
 // Bài 10
-const randomTask = new Promise<string>((resolve, reject) => {
-  const success = Math.random() > 0.5;
-  setTimeout(() => {
-    success ? resolve("Success!") : reject("Failed!");
-  }, 1000);
-});
+// const randomTask = new Promise<string>((resolve, reject) => {
+//   const success = Math.random() > 0.5;
+//   setTimeout(() => {
+//     success ? resolve("Success!") : reject("Failed!");
+//   }, 1000);
+// });
 
-randomTask
-  .then((msg) => console.log("Result:", msg))
-  .catch((err) => console.error("Error:", err))
-  .finally(() => console.log("Done"));
+// randomTask
+//   .then((msg) => console.log("Result:", msg))
+//   .catch((err) => console.error("Error:", err))
+//   .finally(() => console.log("Done"));
+
+// Bài 11
+function waitHello(): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Hello Async"), 2000);
+  });
+}
+
+async function runHello(): Promise<void> {
+  const result: string = await waitHello();
+  console.log(result); // Output: "Hello Async"
+}
+
+runHello();
