@@ -26,6 +26,7 @@
 // }
 // throwError().catch((err)=> console.log(err.message))
 
+// Bài 4
 function randomNumber(){
     return new Promise((resolve,reject)=>{
         const num = Math.random()
@@ -37,3 +38,4 @@ function randomNumber(){
     })
 }
 randomNumber().then(console.log)
+
