@@ -56,11 +56,19 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
     })
 }
 
-Promise.all([
-    simulateAsyncTask("Task1",1000),
-    simulateAsyncTask("Task2",8000),
-    simulateAsyncTask("Task3",1500),
-]).then((results:string[])=>{
-    console.log("All task completed",results);
+// Promise.all([
+//     simulateAsyncTask("Task1",1000),
+//     simulateAsyncTask("Task2",8000),
+//     simulateAsyncTask("Task3",1500),
+// ]).then((results:string[])=>{
+//     console.log("All task completed",results);
     
-})
+// })
+
+// Bài 7
+Promise.race([
+  simulateAsyncTask("Fast Task", 500),
+  simulateAsyncTask("Slow Task", 2000),
+]).then((firstResult: string) => {
+  console.log("First task finished:", firstResult);
+});
