@@ -82,13 +82,26 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 //   .then((result) => console.log("Final result:", result));
 
 // Bài 9
-function filterNumberEven(arr:number[]):Promise<number[]> {
-    return new Promise((resolve)=>{
-        setTimeout(()=>{
-            const numberEven = arr.filter(x=> x%2 ===0)
-            resolve(numberEven)
-        },1000)
-    })
-}
-filterNumberEven([2,5,6,7,8,11,15,17,19]).then(console.log
-)
+// function filterNumberEven(arr:number[]):Promise<number[]> {
+//     return new Promise((resolve)=>{
+//         setTimeout(()=>{
+//             const numberEven = arr.filter(x=> x%2 ===0)
+//             resolve(numberEven)
+//         },1000)
+//     })
+// }
+// filterNumberEven([2,5,6,7,8,11,15,17,19]).then(console.log
+// )
+
+// Bài 10
+const randomTask = new Promise<string>((resolve, reject) => {
+  const success = Math.random() > 0.5;
+  setTimeout(() => {
+    success ? resolve("Success!") : reject("Failed!");
+  }, 1000);
+});
+
+randomTask
+  .then((msg) => console.log("Result:", msg))
+  .catch((err) => console.error("Error:", err))
+  .finally(() => console.log("Done"));
