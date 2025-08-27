@@ -66,9 +66,29 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 // })
 
 // Bài 7
-Promise.race([
-  simulateAsyncTask("Fast Task", 500),
-  simulateAsyncTask("Slow Task", 2000),
-]).then((firstResult: string) => {
-  console.log("First task finished:", firstResult);
-});
+// Promise.race([
+//   simulateAsyncTask("Fast Task", 500),
+//   simulateAsyncTask("Slow Task", 2000),
+// ]).then((firstResult: string) => {
+//   console.log("First task finished:", firstResult);
+// });
+// Bài 8 
+// new Promise<number>((resolve) => {
+//   resolve(2);
+// })
+//   .then((num) => num * num)     // square: 2^2 = 4
+//   .then((num) => num * 2)       // double: 4 * 2 = 8
+//   .then((num) => num + 5)       // add 5: 8 + 5 = 13
+//   .then((result) => console.log("Final result:", result));
+
+// Bài 9
+function filterNumberEven(arr:number[]):Promise<number[]> {
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            const numberEven = arr.filter(x=> x%2 ===0)
+            resolve(numberEven)
+        },1000)
+    })
+}
+filterNumberEven([2,5,6,7,8,11,15,17,19]).then(console.log
+)
