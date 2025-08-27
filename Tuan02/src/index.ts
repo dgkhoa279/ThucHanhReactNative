@@ -107,15 +107,31 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 //   .finally(() => console.log("Done"));
 
 // Bài 11
-function waitHello(): Promise<string> {
+// function waitHello(): Promise<string> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => resolve("Hello Async"), 2000);
+//   });
+// }
+
+// async function runHello(): Promise<void> {
+//   const result: string = await waitHello();
+//   console.log(result); // Output: "Hello Async"
+// }
+
+// runHello();
+
+// Bài 12 
+function simulateTask(time: number): Promise<string> {
   return new Promise((resolve) => {
-    setTimeout(() => resolve("Hello Async"), 2000);
+    setTimeout(() => {
+      resolve("Task done");
+    }, time);
   });
 }
 
-async function runHello(): Promise<void> {
-  const result: string = await waitHello();
-  console.log(result); // Output: "Hello Async"
+async function runSimulatedTask(): Promise<void> {
+  const result: string = await simulateTask(2000);
+  console.log(result); // Output: "Task done"
 }
 
-runHello();
+runSimulatedTask();
