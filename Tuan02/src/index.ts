@@ -40,12 +40,27 @@
 // randomNumber().then(console.log)
 // Bài 5 
 
-function simulateTask(time: number): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Task done");
-    }, time);
-  });
+// function simulateTask(time: number): Promise<string> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("Task done");
+//     }, time);
+//   });
+// }
+
+// simulateTask(1500).then((msg: string) => console.log(msg));
+// Bài 6 
+function simulateAsyncTask(taskName:string,time:number):Promise<string> {
+    return new Promise((resolve) => {
+        setTimeout(()=> resolve(`${taskName} done`),time)
+    })
 }
 
-simulateTask(1500).then((msg: string) => console.log(msg));
+Promise.all([
+    simulateAsyncTask("Task1",1000),
+    simulateAsyncTask("Task2",8000),
+    simulateAsyncTask("Task3",1500),
+]).then((results:string[])=>{
+    console.log("All task completed",results);
+    
+})
