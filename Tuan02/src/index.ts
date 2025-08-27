@@ -121,17 +121,36 @@ function simulateAsyncTask(taskName:string,time:number):Promise<string> {
 // runHello();
 
 // Bài 12 
-function simulateTask(time: number): Promise<string> {
-  return new Promise((resolve) => {
+// function simulateTask(time: number): Promise<string> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("Task done");
+//     }, time);
+//   });
+// }
+
+// async function runSimulatedTask(): Promise<void> {
+//   const result: string = await simulateTask(2000);
+//   console.log(result); // Output: "Task done"
+// }
+
+// runSimulatedTask();
+// Bài 13 
+function simulateError(): Promise<string> {
+  return new Promise((_, reject) => {
     setTimeout(() => {
-      resolve("Task done");
-    }, time);
+      reject(new Error("Something went wrong"));
+    }, 1000);
   });
 }
 
-async function runSimulatedTask(): Promise<void> {
-  const result: string = await simulateTask(2000);
-  console.log(result); // Output: "Task done"
+async function runWithErrorHandling(): Promise<void> {
+  try {
+    const result: string = await simulateError();
+    console.log(result); 
+  } catch (error) {
+    console.error("Caught error:", (error as Error).message);
+  }
 }
 
-runSimulatedTask();
+runWithErrorHandling();
